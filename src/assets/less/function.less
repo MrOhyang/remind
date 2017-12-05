@@ -1,0 +1,37 @@
+.flex(){
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+.flex-justify-content(@arg){
+    -webkit-box-pack: @arg;
+    -moz-justify-content: @arg;
+    -webkit-justify-content: @arg;
+    justify-content: @arg;
+}
+.flex-align-items(@arg){
+    -webkit-box-align: @arg;
+    -moz-align-items: @arg;
+    -webkit-align-items: @arg;
+    align-items: @arg;
+}
+.flex-direction(@arg){
+    -moz-flex-direction: @arg;
+    -webkit-flex-direction: @arg;
+    flex-direction: @arg;
+}
+.transform(@arg){
+    transform: @arg;
+    -webkit-transform: @arg;  /* for Chrome || Safari */
+    -moz-transform: @arg;     /* for Firefox */
+    -ms-transform: @arg;      /* for IE */
+    -o-transform: @arg;       /* for Opera */
+}
+.animation(@arg){
+    animation: @arg;
+    -moz-animation: @arg;  /* Firefox */
+    -webkit-animation: @arg;  /* Safari 和 Chrome */
+    -o-animation: @arg;  /* Opera */
+}
