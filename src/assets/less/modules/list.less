@@ -3,15 +3,75 @@
  */
 .list-page-wrapper {
 }
+
 // 页面顶部
 .list-page-header-wrapper {
   padding: 0 10/16rem;
   height: 46/16rem;
   line-height: 46/16rem;
   font-size: 18/16rem;
-  background-color: #eee;
+  // background-color: #eee;
   h1 {
     display: inline;
+    padding-left: 8/16rem;
     font-size: 18/16rem;
+  }
+  em {
+    float: right;
+    margin-top: (46-30)/2/16rem;
+    width: 30/16rem;
+    height: 30/16rem;
+    line-height: 30/16rem;
+    text-align: center
+  }
+}
+
+// 列表项
+.item-list-wrapper {
+  .item-list-title {
+    position: relative;
+    height: 30/16rem;
+    line-height: 30/16rem;
+    text-indent: 22/16rem;
+    font-size: 13/16rem;
+    color: #999;
+    .sp-sanjiao {
+      position: absolute;
+      top: 50%;
+      left: 9/16rem;
+      display: block;
+      margin-top: -2/16rem;
+      width: 0;
+      height: 0;
+      border: 5/16rem transparent solid;
+      border-bottom-width: 0;
+      border-top-color: #bbb;
+    }
+  }
+  ul {
+    li {
+      height: 32/16rem;
+      line-height: 32/16rem;
+      font-size: 15/16rem;
+      // background-color: #e7e7e7;
+      .sp-left {
+        float: left;
+        padding-right: 1%;
+        width: 12%;
+        height: inherit;
+        text-align: right;
+      }
+      .sp-right {
+        float: right;
+        margin-right: 3%;
+        width: 100-1-12-3%;
+        height: inherit;
+      }
+    }
+    li + li {
+      .sp-right {
+        border-top: 1px #e6e6e6 solid;
+      }
+    }
   }
 }
