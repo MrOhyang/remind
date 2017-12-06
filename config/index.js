@@ -4,6 +4,13 @@
 
 const path = require('path')
 
+let argvs = process.argv.slice(2);
+let assetsPublicPath = '/remind/dist/';
+
+if (argvs.length > 0) {
+} else {
+}
+
 module.exports = {
   dev: {
 
@@ -60,7 +67,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: assetsPublicPath,
 
     /**
      * Source Maps
