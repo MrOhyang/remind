@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Login from '@/pages/login.vue'
 import List from '@/pages/list.vue'
 
 Vue.use(Router)
@@ -13,6 +14,12 @@ const router = new Router({
       path: '/',
       name: 'Index',
       // component: HelloWorld
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/list',

@@ -1,0 +1,87 @@
+/**
+ * 登录页面
+ */
+
+.login-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../images/bg-01.png);
+  background-size: 100%;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-color: #f9f9f9;
+}
+// 登录头部标题
+.login-title {
+  height: 50/16rem;
+  line-height: 50/16rem;
+  text-align: center;
+  h1 {
+    margin: 0 auto;
+    width: 90%;
+    font-size: 18/16rem;
+    border-bottom: 1px #e0e0e0 solid;
+  }
+}
+// 电话号码输入等等
+.form-wrapper {
+  margin: 0 auto;
+  padding-top: 240/16rem;
+  width: 62%;
+  .form-row {
+    position: relative;
+    width: 100%;
+    // background-color: #eee;
+    &.visihide {
+      visibility: hidden;
+    }
+    i.iconfont {
+      position: absolute;
+      bottom: 4/16rem;
+      left: 2/16rem;;
+      width: 20/16rem;
+      height: 20/16rem;
+      text-align: center;
+      vertical-align: middle;
+      color: #bbb;
+    }
+    input {
+      padding-left: 26/16rem;
+      background-color: transparent;
+      border-width: 0 0 1px 0;
+    }
+    button.btn-yzm {
+      float: right;
+      padding: 0 10/16rem;
+      height: 30/16rem;
+      line-height: 28/16rem;
+      background-color: #fff;
+      border: 1px #ff7e45 solid;
+      border-radius: 4px;
+      color: #ff7e45;
+      cursor: pointer;
+      &.sended {
+        background-color: #fbfbfb;
+        border-color: #ccc;
+        color: #ccc;
+      }
+    }
+  }
+  .form-row + .form-row {
+    margin-top: 24/16rem;
+  }
+  .btn-submit {
+    margin-top: 100/16rem;
+    width: 100%;
+    height: 46/16rem;
+    line-height: 44/16rem;
+    font-size: 16/16rem;
+    background-color: #ff7e45;
+    border: 0;
+    border-radius: 5/16rem;
+    color: #fff;
+  }
+}

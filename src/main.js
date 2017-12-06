@@ -6,14 +6,18 @@ import Axios from 'axios'
 import _ from 'lodash'
 
 import {
+  Input,
   Checkbox,     // 多选框
   CheckboxButton,
   CheckboxGroup,
+  Message
 } from 'element-ui'
 
+Vue.use(Input);
 Vue.use(Checkbox);
 Vue.use(CheckboxButton);
 Vue.use(CheckboxGroup);
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
 Vue.$http = Vue.prototype.$http = Axios;
