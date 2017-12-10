@@ -1,0 +1,41 @@
+// 日期选择组件
+.date-selector-wrapper {
+  .row {
+    zoom: 1;
+    &:after {
+      content: ""; display: block; visibility: hidden; height: 0; line-height: 0; font-size: 0; clear: both;
+    }
+    span {
+      float: left;
+      width: 100/7%;
+      text-align: center;
+    }
+  }
+  .week-title-wrapper {
+    span {
+      height: 24/16rem;
+      line-height: 24/16rem;
+      font-size: 12/16rem;
+      background-color: #f0f1f3;
+      color: #9ba3ae;
+    }
+  }
+  .day-wrapper {
+    span {
+      height: 38/16rem;
+      line-height: 38/16rem;
+      font-size: 14/16rem;
+      vertical-align: middle;
+      b {
+        display: inline-block;
+        width: 29/16rem;
+        height: 29/16rem;
+        line-height: 29/16rem;
+        font-weight: normal;
+        background-color: #617fde;
+        border-radius: 50%;
+        color: #fff;
+      }
+    }
+  }
+}
