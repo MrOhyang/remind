@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import _ from 'lodash'
+import myCookie from '@/plugins/myCookie/myCookie.js'
 
 import {
   Input,
@@ -21,6 +22,7 @@ Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
 Vue.$http = Vue.prototype.$http = Axios;
+Vue.use(myCookie);
 
 // Axios 拦截器设置
 Axios.interceptors.request.use(config => {
