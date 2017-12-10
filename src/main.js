@@ -30,6 +30,10 @@ Axios.interceptors.request.use(config => {
   // if (!/^\/auth/.test(config.url)) {
   //   config.headers.Authorization = 'Bearer ' + store.state.user.token;
   // }
+  if (/api\/ReMind\/User\/((phoneCode)|(checkLogin))/.test(config.url)) {
+  } else {
+    config.headers.token = Vue.$getCookie('token');
+  }
   return config;
 });
 Axios.interceptors.response.use(res => {
