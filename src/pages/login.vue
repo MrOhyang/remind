@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import qs from 'qs';
 export default {
   data() {
     return {
@@ -107,16 +108,16 @@ export default {
     },
     // 验证登录
     login() {
-      if (this.phone != this.phone_bk) {
-        window.clearInterval(this.sended_yzm_timer);
-        this.sended_yzm = false;
-        this.$message({
-          showClose: true,
-          message: '手机号码已被修改，请重新收取验证码信息',
-          type: 'error'
-        });
-        return ;
-      }
+      // if (this.phone != this.phone_bk) {
+      //   window.clearInterval(this.sended_yzm_timer);
+      //   this.sended_yzm = false;
+      //   this.$message({
+      //     showClose: true,
+      //     message: '手机号码已被修改，请重新收取验证码信息',
+      //     type: 'error'
+      //   });
+      //   return ;
+      // }
       if (this.yzm == '') {
         this.$message({
           showClose: true,
@@ -125,13 +126,12 @@ export default {
         });
         return ;
       }
-      this.$http.get('/api/ReMind/User/checkLogin', {
-        params: {
-          phone: this.phone,
-          code: this.yzm
-        }
-      }).then(r => {
+      this.$http.post('/api/ReMind/User/checkLogin', qs.stringify({
+        phone: this.phone,
+        code: this.yzm
+      })).then(r => {
         if (r.data.code == 0) {
+          this.$setCookie('token', r.data.data.token, 2);
           this.$message({
             showClose: true,
             message: '登录成功，2s后跳转至消息中心',
