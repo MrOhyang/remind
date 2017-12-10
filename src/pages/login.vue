@@ -17,7 +17,7 @@
         {{ {true: `${btn_yzm_val}s后可重新发送`, false: '获取短信验证码'}[sended_yzm] }}
       </button>
     </div>
-    <div class="form-row" :class="{visihide: !show_input_yzm}">
+    <div class="form-row">
       <i class="iconfont icon-pwd"></i>
       <el-input size="small" placeholder="请输入您收到的短信验证码"
                 ref="input_yzm"
@@ -41,7 +41,6 @@ export default {
       phone_bk: '',  // 手机号码备份
 
       sended_yzm: false,  // 是否发送了验证码
-      show_input_yzm: false,  // 显示填入短信验证码
 
       sended_yzm_timer: null,  // 发送验证码计时器
     }
@@ -89,7 +88,6 @@ export default {
         }
       }).then(r => {
         if (r.data.code == 0) {
-          this.show_input_yzm = true;
           this.phone_bk = this.phone;
           this.$nextTick(() => {
             this.$refs.input_yzm.focus();
@@ -109,9 +107,6 @@ export default {
     },
     // 验证登录
     login() {
-      if (!this.show_input_yzm) {
-        return ;
-      }
       if (this.phone != this.phone_bk) {
         window.clearInterval(this.sended_yzm_timer);
         this.sended_yzm = false;
