@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Login from '@/pages/login.vue'
 import List from '@/pages/list.vue'
+import Add from '@/pages/add.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ const router = new Router({
       path: '/list',
       name: 'List',
       component: List
+    },
+    {
+      path: '/add',
+      name: 'Add',
+      component: Add
     }
   ]
 });
