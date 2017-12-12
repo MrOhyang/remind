@@ -132,6 +132,7 @@ export default {
       })).then(r => {
         if (r.data.code == 0) {
           this.$setCookie('token', r.data.data.token, 2);
+          this.$store.commit('[user]setToken', r.data.data.token);
           this.$message({
             showClose: true,
             message: '登录成功，2s后跳转至消息中心',
