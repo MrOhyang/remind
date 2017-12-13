@@ -7,9 +7,10 @@
     <h1>
       所有
     </h1>
-    <em>
+    <router-link to="/add" class="add">添加</router-link>
+    <!-- <em>
       <i class="iconfont icon-more"></i>
-    </em>
+    </em> -->
   </div>
 
   <!-- 未提醒列表 -->
@@ -61,14 +62,14 @@ export default {
       list_folder: false,
       old_list_folder: false,
       list: [
-        { text: '购买机票', checked: false, date: 1512462600 },
-        { text: '购买机票', checked: false, date: 1512462900 },
-        { text: '购买机票', checked: false, date: 1512463200 }
+        // { text: '购买机票', checked: false, date: 1512462600 },
+        // { text: '购买机票', checked: false, date: 1512462900 },
+        // { text: '购买机票', checked: false, date: 1512463200 }
       ],
       old_list: [
-        { text: '购买机票', checked: true, date: 1512461700 },
-        { text: '购买机票', checked: true, date: 1512462000 },
-        { text: '购买机票', checked: true, date: 1512462300 }
+        // { text: '购买机票', checked: true, date: 1512461700 },
+        // { text: '购买机票', checked: true, date: 1512462000 },
+        // { text: '购买机票', checked: true, date: 1512462300 }
       ]
     };
   },
@@ -85,8 +86,17 @@ export default {
     }
   },
   created() {
+    this.getTaskList();
   },
   methods: {
+    // 获取任务列表
+    async getTaskList() {
+      let r = await this.$http.get('/api/ReMind/Task/taskInfo', {
+        params: {
+          phone_str: this.$store.state.user.phone
+        }
+      });
+    }
   }
 }
 </script>
