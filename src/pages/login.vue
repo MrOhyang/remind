@@ -131,7 +131,9 @@ export default {
         code: this.yzm
       })).then(r => {
         if (r.data.code == 0) {
+          this.$setCookie('phone', this.phone, 2);
           this.$setCookie('token', r.data.data.token, 2);
+          this.$store.commit('[user]setPhone', this.phone);
           this.$store.commit('[user]setToken', r.data.data.token);
           this.$message({
             showClose: true,
