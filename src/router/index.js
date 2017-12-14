@@ -15,7 +15,7 @@ const router = new Router({
       path: '/',
       name: 'Index',
       // component: HelloWorld
-      redirect: '/login'
+      redirect: '/list'
     },
     {
       path: '/login',
@@ -40,6 +40,12 @@ router.beforeEach((to, from, next) => {
   let token = Vue.$getCookie('token');
 
   if (/\/login/.test(to.path)) {
+    // 已经登录过的跳转列表页
+    if (phone && token) {
+      next('/list');
+      return ;
+    } else {
+    }
   } else {
     // 需要判断登录
     if (phone && token) {
