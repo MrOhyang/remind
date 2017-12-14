@@ -12,9 +12,30 @@
     }
   }
   .month-wrapper {
+    position: relative;
+    margin: 0 10/16rem;
     height: 40/16rem;
     line-height: 40/16rem;
     font-size: 15/16rem;
+    // text-indent: 40/16rem;
+    text-align: center;
+    span.icon-arrow-left-circle, span.icon-arrow-right-circle {
+      position: absolute;
+      top: 0;
+      float: none;
+      width: 40/16rem;
+      height: 40/16rem;
+      line-height: 40/16rem;
+      font-size: 19/16rem;
+      text-indent: 0;
+      color: #617fde;
+    }
+    span.icon-arrow-left-circle {
+      left: 0;
+    }
+    span.icon-arrow-right-circle {
+      right: 0;
+    }
   }
   .week-title-wrapper {
     // border-top: 1px #aaa solid;
@@ -40,10 +61,11 @@
       &.active:before {
         content: "";
         position: absolute;
-        top: 0.5*(38-29)/16rem;
+        top: 50%;
         left: 50%;
         display: block;
-        margin-left: 0.5*-29/16rem;
+        margin-top: 0.5*(-29-1)/16rem;
+        margin-left: 0.5*(-29)/16rem;
         width: 29/16rem;
         height: 29/16rem;
         line-height: 29/16rem;

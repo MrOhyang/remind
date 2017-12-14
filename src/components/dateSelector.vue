@@ -2,7 +2,11 @@
 <div class="date-selector-wrapper">
 
   <div class="row month-wrapper">
-    十二月
+    <span class="iconfont icon-arrow-left-circle"
+          @click="nextMonth(-1)"></span>
+    {{ title }}
+    <span class="iconfont icon-arrow-right-circle"
+          @click="nextMonth(1)"></span>
   </div>
 
   <!-- 星期 -->
@@ -45,20 +49,40 @@ export default {
       date_list: [],
     }
   },
+  computed: {
+    title() {
+      let str = 
+        this.current_year + ' '
+        + ['一', '二', '三', '四',
+           '五', '六', '七', '八',
+           '九', '十', '十一', '十二'][this.current_month]
+        + '月';
+      return str;
+    }
+  },
   created() {
+    let now = moment();
+
+    this.current_year = now.year();
+    this.current_month = now.month();
+    this.selected_day = now;
     this.initDay();
   },
   methods: {
     // 模拟数据
     initDay() {
-      let first_day = moment();
+      let str = this.current_year + '-';
+      if ((this.current_month + 1) < 10) {
+        str += '0';
+      }
+      str += (this.current_month + 1) + '-01 00:00:00';
+      console.log(str);
+      let first_day = moment(str);
+      console.log(first_day);
       let num_max = 0;
 
-      this.current_year = first_day.year();
-      this.current_month = first_day.month();
-      this.selected_day = moment();
-
       first_day.add(1 - first_day.date(), 'd');
+      this.date_list = [];
       for (let i = 0, len = first_day.day(); i < len; i++) {
         this.date_list.push({
           is_empty: true
@@ -88,6 +112,18 @@ export default {
       this.$set(day, 'active', true);
       this.selected_day = moment(day.time);
       this.selected_day_data = day;
+    },
+    // 进入上一个月或者下一个月
+    nextMonth(diff) {
+      this.current_month += diff;
+      if (this.current_month == -1) {
+        this.current_month = 11;
+        this.current_year--;
+      } else if (this.current_month == 12) {
+        this.current_month = 0;
+        this.current_year++;
+      }
+      this.initDay();
     }
   }
 }
