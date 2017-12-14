@@ -22,10 +22,10 @@
     <ul v-show="!list_folder">
       <li v-for="(item, i) in list" :key="i">
         <span class="sp-left">
-          <el-checkbox v-model="item.checked"></el-checkbox>
+          <el-checkbox v-model="item.checked" disabled></el-checkbox>
         </span>
         <span class="sp-right">
-          <p>购买机票</p>
+          <p>{{ item.content }}</p>
           <em class="em-time">{{ list_date[i] }}</em>
         </span>
       </li>
@@ -41,10 +41,10 @@
     <ul v-show="!old_list_folder">
       <li v-for="(item, i) in old_list" :key="i">
         <span class="sp-left">
-          <el-checkbox v-model="item.checked"></el-checkbox>
+          <el-checkbox v-model="item.checked" disabled></el-checkbox>
         </span>
         <span class="sp-right">
-          <p>购买机票</p>
+          <p>{{ item.content }}</p>
           <em class="em-time">{{ old_list_date[i] }}</em>
         </span>
       </li>
@@ -62,26 +62,48 @@ export default {
       list_folder: false,
       old_list_folder: false,
       list: [
-        // { text: '购买机票', checked: false, date: 1512462600 },
-        // { text: '购买机票', checked: false, date: 1512462900 },
-        // { text: '购买机票', checked: false, date: 1512463200 }
+        // { text: '购买机票', checked: false, send_time: 1512462600 },
+        // { text: '购买机票', checked: false, send_time: 1512462900 },
+        // { text: '购买机票', checked: false, send_time: 1512463200 }
       ],
       old_list: [
-        // { text: '购买机票', checked: true, date: 1512461700 },
-        // { text: '购买机票', checked: true, date: 1512462000 },
-        // { text: '购买机票', checked: true, date: 1512462300 }
+        // { text: '购买机票', checked: true, send_time: 1512461700 },
+        // { text: '购买机票', checked: true, send_time: 1512462000 },
+        // { text: '购买机票', checked: true, send_time: 1512462300 }
       ]
     };
   },
   computed: {
     list_date() {
+      let now = moment();
+
       return this.list.map(item => {
-        return moment.unix(item.date).format('HH:mm');
+        let time = moment.unix(item.send_time);
+        let str = '';
+        if (now.year() != time.year()) {
+          str += time.year() + ' ';
+        }
+        if (now.month() != time.month()) {
+          str += (time.month() + 1) + '月 ';
+        }
+        str += time.format('HH:mm');
+        return str;
       });
     },
     old_list_date() {
+      let now = moment();
+
       return this.old_list.map(item => {
-        return moment.unix(item.date).format('HH:mm');
+        let time = moment.unix(item.send_time);
+        let str = '';
+        if (now.year() != time.year()) {
+          str += time.year() + ' ';
+        }
+        if (now.month() != time.month()) {
+          str += (time.month() + 1) + '月 ';
+        }
+        str += time.format('HH:mm');
+        return str;
       });
     }
   },
@@ -91,11 +113,38 @@ export default {
   methods: {
     // 获取任务列表
     async getTaskList() {
-      let r = await this.$http.get('/api/ReMind/Task/taskInfo', {
-        params: {
-          phone_str: this.$store.state.user.phone
-        }
-      });
+      let r = null;
+      try {
+        r = await this.$http.get('/api/ReMind/Task/taskInfo', {
+          params: {
+            phone_str: this.$store.state.user.phone
+          }
+        });
+      } catch (e) {
+        this.$message({
+          showClose: true,
+          message: '发生错误',
+          type: 'error'
+        });
+      }
+      if (!r) return ;
+      if (r.data.code == 0) {
+        this.list = r.data.data.no_send.map(item => {
+          return {
+            content: item.content,
+            send_time: item.send_time,
+            checked: false
+          };
+        });
+        this.old_list = r.data.data.has_send.map(item => {
+          return {
+            content: item.content,
+            send_time: item.send_time,
+            checked: true
+          };
+        });
+      } else {
+      }
     }
   }
 }
