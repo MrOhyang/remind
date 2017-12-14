@@ -93,6 +93,7 @@ export default {
             type: 'success'
           });
           this.initData();
+          this.$router.push({ path: '/list' });
         } else {
           this.$message({
             showClose: true,

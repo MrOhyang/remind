@@ -81,10 +81,13 @@ export default {
         let time = moment.unix(item.send_time);
         let str = '';
         if (now.year() != time.year()) {
-          str += time.year() + ' ';
+          str += String(time.year()).slice(2, 4) + '\/';
         }
-        if (now.month() != time.month()) {
-          str += (time.month() + 1) + '月 ';
+        if (now.year() != time.year()
+            || now.month() != time.month()
+            || now.date() != time.date()) {
+          str += (time.month() + 1) + '\/';
+          str += time.date() + ' ';
         }
         str += time.format('HH:mm');
         return str;
@@ -97,10 +100,13 @@ export default {
         let time = moment.unix(item.send_time);
         let str = '';
         if (now.year() != time.year()) {
-          str += time.year() + ' ';
+          str += String(time.year()).slice(2, 4) + '\/';
         }
-        if (now.month() != time.month()) {
-          str += (time.month() + 1) + '月 ';
+        if (now.year() != time.year()
+            || now.month() != time.month()
+            || now.date() != time.date()) {
+          str += (time.month() + 1) + '\/';
+          str += time.date() + ' ';
         }
         str += time.format('HH:mm');
         return str;
