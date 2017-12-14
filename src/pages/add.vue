@@ -4,7 +4,7 @@
   <!-- 标题 -->
   <div class="add-title-wrapper">
     <router-link to="/list" class="iconfont icon-arrow-left"></router-link>
-    <h1>添加提醒{{ this.time }}</h1>
+    <h1>添加提醒</h1>
   </div>
 
   <div class="main-input-wrapper">
@@ -86,7 +86,7 @@ export default {
         send_content: this.content
       })).then(r => {
         this.is_sending = false;
-        if (r.code == 0) {
+        if (r.data.code == 0) {
           this.$message({
             showClose: true,
             message: '添加成功',
@@ -96,7 +96,7 @@ export default {
         } else {
           this.$message({
             showClose: true,
-            message: r.msg,
+            message: r.data.msg,
             type: 'error'
           });
         }
