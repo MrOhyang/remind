@@ -36,6 +36,19 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  let phone = Vue.$getCookie('phone');
+  let token = Vue.$getCookie('token');
+
+  if (/\/login/.test(to.path)) {
+  } else {
+    // 需要判断登录
+    if (phone && token) {
+    } else {
+      // 需要登录，但是用户没有登录
+      next('/login');
+      return ;
+    }
+  }
   next();
 });
 

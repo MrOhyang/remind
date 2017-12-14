@@ -37,6 +37,17 @@ Axios.interceptors.request.use(config => {
   return config;
 });
 Axios.interceptors.response.use(res => {
+  // 未登录的拦截器
+  if (res.data.code == -101) {
+    Vue.$setCookie('phone', '', -1);
+    Vue.$setCookie('token', '', -1);
+    let url = window.location.origin;
+    let pathname = window.location.pathname;
+    if (pathname.length > 2) {
+      url += pathname;
+    }
+    window.location.href = url;
+  }
   // 如果 接口提示 没有登录的话，就删除 本地数据并跳转首页
   // if (res.data.code == 6) {
   //   localStorage.removeItem('user-token');

@@ -9,7 +9,6 @@ import '@/assets/fonts/iconfont.css';
 export default {
   name: 'app',
   created() {
-
     // 测试数据
     // this.mockUser();
 
